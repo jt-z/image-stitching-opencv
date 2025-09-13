@@ -207,7 +207,8 @@ def main():
     
     try:
         # 创建拼接器并加载图像
-        stitcher = ImageStitcher(max_dimension=args.max_size)
+        max_size = getattr(args, 'max_size', 1000)  # 兼容处理
+        stitcher = ImageStitcher(max_dimension=max_size)
         images = stitcher.load_images(args.images)
         
         if len(images) < 2:
